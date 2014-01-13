@@ -1,0 +1,80 @@
+<template name="home-header">
+<!-- start header -->
+{{#with blog.topstory}}
+<div class="site-header" {{#if feature_media.url1}}style="background-image: url({{feature_media.url}})"{{/if}}>
+	<header class="container" >
+		<div class="row">
+			<h3><span class="label label-danger">Top Story</span></h3>
+			<div class="col-sm-12">
+				<h2 class="logo"><a href="{{pathFor 'post'}}">{{title}}</a></h2>
+				<h3>{{excerpt}}</h3>
+			</div>
+		</div>
+	</header>
+</div>
+{{/with}}
+<!-- end header -->
+</template>
+
+
+<template name="home">
+  {{setTitle "Home"}}
+  {{>home-header}}
+  <section class="container">
+    <div id="container" class="row js-masonry" data-masonry-options='{ "itemSelector": ".mansonry-post", "columnWidth": 200 }'>
+      {{#each posts}}
+        {{> post-excerpt}}
+      {{/each}}
+    </div>
+    <button id="addnew" type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Add new article</button>
+    {{! more-posts}}
+  </section>
+</template>
+
+<template name="more-posts">
+    <div class="pagination-container">{{pagination}}</div>
+    <div class="row">
+      <div class="col-md-4 col-sm-offset-6 col-md-offset-4"><a href="#" class="load-more">Load More Post</a></div>
+    </div>
+</template>
+
+<template name="post-excerpt">
+  <div class="col-md-4 col-sm-6 post-container">
+  <article class="post">
+    <div class="post-cont">
+    <!-- feature media start -->
+    {{#if feature_media}}
+      <div class="append-feature-media">
+        <div class="feature_media">
+          <a href="{{pathFor 'post'}}">
+            <img src="{{feature_media.url}}"/>
+          </a>
+        </div>
+      </div>
+    {{/if}}
+    <!-- feature media end -->
+    <header class="post-header">
+      <h2 class="post-title"><a href="{{pathFor 'post'}}">{{{title}}}</a></h2>
+    </header>
+    <!-- post content -->
+    <a href="{{pathFor 'post'}}">
+      <div class="post-content">
+        {{#markdown}}{{excerpt}}{{/markdown}}
+	  </div>
+    </a>
+    </div>
+    <!-- post footer -->
+    <footer class="post-footer">
+      <span class="author">{{author.name}}</span>
+      <span class="date">{{date}}</span>
+      {{#if tags}}
+      <div class="tags">
+        <i class="fa fa-tag"></i>{{tags separator=", "}}
+      </div>
+      {{/if}}
+    </footer>
+  </article>
+  </div>
+</template>
+
+

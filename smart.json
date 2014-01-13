@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "bootstrap-3": {},
+    "underscore-string": {},
+    "underscore-string-latest": {},
+    "moment": {},
+    "iron-router": {},
+    "urlify2": {}
+  }
+}
